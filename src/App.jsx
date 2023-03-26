@@ -1,5 +1,11 @@
 import './App.css'
 
+import Typography from '@mui/joy/Typography';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+import Input from '@mui/joy/Input';
+import Button from '@mui/joy/Button';
+
 import Shape from "./Shape";
 
 import { useState, useEffect, useRef } from "react";
@@ -40,37 +46,80 @@ export default function App() {
       addShape(radius)
     }
   }
+
+  function handleChange(e, value) {
+    setShape(value)
+  }
   
   return (
     <main>
-      <h1>Shapes and Classes</h1>
-      <p>blah blah blah</p>
-
-      <label>Select a shape to create:</label>
-      <select onChange={(e)=>{handleChange(e.target.value)}}>
-        <option defaultValue value="Square">Square</option>
-        <option value="Rectangle">Rectangle</option>
-        <option value="Circle">Circle</option>
-      </select>
+      <Typography level="h1">Classes and Shapes</Typography>
+      <Typography level="h3">
+        OOP implemented as util in React
+      </Typography>
+      <Typography level="body1">
+        Blah blah blah
+      </Typography>
+      <br></br>
+      <Typography level="body1">Select a shape to create:</Typography>
+      <Select defaultValue="Square" onChange={handleChange}>
+        <Option value="Square">Square</Option>
+        <Option value="Rectangle">Rectangle</Option>
+        <Option value="Circle">Circle</Option>
+      </Select>
       {shape !== "Circle" && <>
-          <br></br>
           <label>Height</label>
-          <input ref={heightRef} type="number" min="10" max="100"></input>
+          <Input
+            type="number"
+            defaultValue={10}
+            slotProps={{
+              input: {
+                ref: heightRef,
+                min: 10,
+                max: 100,
+                step: 1,
+              },
+            }}
+          />
         </>
       }
       {shape === "Rectangle" && <>
-        <br></br>
         <label>Width</label>
-        <input ref={widthRef} type="number" min="10" max="100"></input>
+          <Input
+            type="number"
+            defaultValue={10}
+            slotProps={{
+              input: {
+                ref: widthRef,
+                min: 10,
+                max: 100,
+                step: 1,
+              },
+            }}
+          />
       </>
       }
       {shape === "Circle" && <>
-        <br></br>
         <label>Radius</label>
-        <input ref={radiusRef} type="number" min="10" max="100"></input>
+          <Input
+            type="number"
+            defaultValue={5}
+            slotProps={{
+              input: {
+                ref: radiusRef,
+                min: 5,
+                max: 50,
+                step: 1,
+              },
+            }}
+          />
       </>
       }
-      <button onClick={handleCreate}>Create</button>
+      <Button
+        color="primary"
+        onClick={handleCreate}
+        variant="solid"
+      >Create</Button>
       {shapes.map(shape => <Shape shape={shape.shape} values={shape.values}/>)}
     </main>
   )
