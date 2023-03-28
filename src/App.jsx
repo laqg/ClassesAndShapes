@@ -53,29 +53,30 @@ export default function App() {
   
   return (
     <main>
-      <Typography level="h1">Classes and Shapes</Typography>
-      <Typography level="h3">
+      <Typography level="h2">Classes and Shapes</Typography>
+      <Typography level="h5">
         OOP implemented as util in React
       </Typography>
       <Typography level="body1">
         Blah blah blah
       </Typography>
       <br></br>
-      <Typography level="body1">Select a shape to create:</Typography>
-      <Select defaultValue="Square" onChange={handleChange}>
+      <Typography level="body2">Select a shape to create:</Typography>
+      <Select size="sm" defaultValue="Square" onChange={handleChange}>
         <Option value="Square">Square</Option>
         <Option value="Rectangle">Rectangle</Option>
         <Option value="Circle">Circle</Option>
       </Select>
       {shape !== "Circle" && <>
-          <label>Height</label>
+          <Typography level="body2">Heigth</Typography>
           <Input
+            size="sm"
             type="number"
-            defaultValue={10}
+            defaultValue={30}
             slotProps={{
               input: {
                 ref: heightRef,
-                min: 10,
+                min: 30,
                 max: 100,
                 step: 1,
               },
@@ -84,14 +85,15 @@ export default function App() {
         </>
       }
       {shape === "Rectangle" && <>
-        <label>Width</label>
+          <Typography level="body2">Width</Typography>
           <Input
+            size="sm"
             type="number"
-            defaultValue={10}
+            defaultValue={30}
             slotProps={{
               input: {
                 ref: widthRef,
-                min: 10,
+                min: 30,
                 max: 100,
                 step: 1,
               },
@@ -100,14 +102,15 @@ export default function App() {
       </>
       }
       {shape === "Circle" && <>
-        <label>Radius</label>
+          <Typography level="body2">Circle</Typography>
           <Input
+            size="sm"
             type="number"
-            defaultValue={5}
+            defaultValue={15}
             slotProps={{
               input: {
                 ref: radiusRef,
-                min: 5,
+                min: 15,
                 max: 50,
                 step: 1,
               },
@@ -116,11 +119,21 @@ export default function App() {
       </>
       }
       <Button
+        size="sm"
         color="primary"
         onClick={handleCreate}
         variant="solid"
-      >Create</Button>
-      {shapes.map(shape => <Shape shape={shape.shape} values={shape.values}/>)}
+        id="createButton"
+      >
+        Create
+      </Button>
+      <Typography level="h6">My Shapes</Typography>
+      <div id="shapesContainer">
+        {shapes.map(shape => <Shape shape={shape.shape} values={shape.values}/>)}
+      </div>
+      <div id="shapesResults">
+        <h1>Hey</h1>
+      </div>
     </main>
   )
 }

@@ -1,0 +1,29 @@
+body{
+  all: unset;
+}
+
+main {
+  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+  height: 98vh
+}
+
+svg {
+  margin: 5px;
+}
+
+#createButton {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  width: 77px;
+  align-self: end;
+}
+
+#shapesContainer{
+  border-radius: 5px;
+  border: solid 1px gray;
+  padding: 10px;
+  flex-grow: 1;
+  overflow: scroll;
+}
